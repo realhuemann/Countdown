@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+    <title id="title">Time Left: 9999</title>
+</head>
+<body  style="background-color: black;">
+<h1 id="soon" style="color: red;">soon...</h1>
+<h1 id="timer" style="color: red;">9999</h1>
+<!-- <img id="cat" src="cat.jpg" style="visibility: hidden;"> -->
+<button id="press">press to start</button>
+</body>
+</html>
+
+<script>
+    let soon = document.getElementById("soon")
+    let timer = document.getElementById("timer")
+    //let cat = document.getElementById("cat")
+    //let cat_style = cat.style
+    let title = document.getElementById("title")
+    let pressed = 0
+    let press = document.getElementById("press")
+    const one = new Audio("1.mp3")
+    const two = new Audio("2.mp3")
+    const three = new Audio("3.mp3")
+    const four = new Audio("4.mp3")
+    const five = new Audio("5.mp3")
+    const six = new Audio("6.mp3")
+    const seven = new Audio("7.mp3")
+    const eight = new Audio("8.mp3")
+    const nine = new Audio("9.mp3")
+    const ten = new Audio("10.mp3")
+    const eleven = new Audio("11.mp3")
+    const twelve = new Audio("12.mp3")
+    
+    setInterval(() => {
+        if (timer.textContent > 0 && pressed == 1){
+            timer.textContent = (timer.textContent) - 1
+            title.textContent =  "Time Left: " + (timer.textContent)
+        }
+        else if (pressed == 1) {
+            soon.textContent = "Thank you"
+            timer.textContent = "for watching"
+            title.textContent = "Thank You"
+           // cat_style.visibility = "visible"
+        }
+        else{
+            //pass
+        }
+    }, 1000);
+
+    press.addEventListener("click", function(){
+        pressed = 1
+        press.style.visibility = "hidden"
+        music()
+    })
+
+async function music() {
+    const sounds = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve];
+
+    while (true) {
+        for (const sound of sounds) {
+            await sound.play();
+            await new Promise(resolve => sound.onended = resolve);
+        }
+    }
+}
+</script>
